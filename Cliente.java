@@ -11,14 +11,14 @@ public class Cliente {
 
         System.out.print("Digite a porta do servidor: ");
         int portaServidor = scanner.nextInt();
-        scanner.nextLine();  // Consumir a nova linha sobrante
+        scanner.nextLine(); 
 
         try {
             Socket socket = new Socket(enderecoServidor, portaServidor);
             PrintWriter saida = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            System.out.println(entrada.readLine()); // Mensagem de boas-vindas
+            System.out.println(entrada.readLine()); 
             String escolha = scanner.nextLine();
             saida.println(escolha);
 
@@ -45,8 +45,8 @@ public class Cliente {
     }
 
     private static void tratarCriacaoDeSala(BufferedReader entrada, PrintWriter saida, Scanner scanner) throws IOException {
-        System.out.println(entrada.readLine()); // Mensagem de sala criada
-        System.out.println(entrada.readLine()); // Código da sala
+        System.out.println(entrada.readLine()); 
+        System.out.println(entrada.readLine());
 
         // Aguardando jogador 2
         String mensagemServidor;
@@ -61,11 +61,11 @@ public class Cliente {
     }
 
     private static void tratarEntradaEmSala(BufferedReader entrada, PrintWriter saida, Scanner scanner) throws IOException {
-        System.out.println(entrada.readLine()); // Digite o código da sala
+        System.out.println(entrada.readLine()); 
         String codigoSala = scanner.nextLine();
         saida.println(codigoSala);
 
-        // Aguardando confirmação ou erro
+    
         String mensagemServidor;
         while ((mensagemServidor = entrada.readLine()) != null) {
             System.out.println(mensagemServidor);
@@ -80,15 +80,14 @@ public class Cliente {
     }
 
     private static void tratarJogoContraCpu(BufferedReader entrada, PrintWriter saida, Scanner scanner) throws IOException {
-        System.out.println(entrada.readLine()); // Mensagem de início do jogo contra a CPU
-
+        System.out.println(entrada.readLine()); 
         for (int i = 0; i < 5; i++) {
-            System.out.println(entrada.readLine()); // Prompt para escolha do jogador
+            System.out.println(entrada.readLine()); 
             String escolhaJogador = scanner.nextLine();
             saida.println(escolhaJogador);
 
-            System.out.println(entrada.readLine()); // Escolha da CPU
-            System.out.println(entrada.readLine()); // Resultado da rodada
+            System.out.println(entrada.readLine());
+            System.out.println(entrada.readLine()); 
         }
 
         String mensagemServidor;
@@ -116,7 +115,7 @@ public class Cliente {
             }
         }
 
-        // Imprimir resultados finais
+        
         while ((mensagemServidor = entrada.readLine()) != null) {
             System.out.println(mensagemServidor);
         }
